@@ -16,4 +16,13 @@ class Invoice extends Model
         'user_id',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Purchase::class, 'invoice_id');
+    }
 }

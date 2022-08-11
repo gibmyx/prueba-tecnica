@@ -46,6 +46,8 @@ Route::middleware([
     Route::get('/product/edit/{id}', [\App\Http\Controllers\Products\ProductsController::class, 'showProduct'])->name('products.edit');
     Route::get('/product/create', [\App\Http\Controllers\Products\ProductsController::class, 'createProduct'])->name('products.create');
 
+    Route::get('/invoices', [\App\Http\Controllers\Invoices\InvoicesController::class, 'index'])->name('invoices.list');
+
     Route::post('/product/update', [\App\Http\Controllers\Products\ProductsController::class, 'update'])->name('products.update');
     Route::post('/product/save', [\App\Http\Controllers\Products\ProductsController::class, 'save'])->name('products.save');
 

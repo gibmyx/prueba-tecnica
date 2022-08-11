@@ -18,7 +18,11 @@ final class InvoicesRepository implements InvoicesRepositoryInterface
 
     public function all(): array
     {
-        return $this->model->all()->toArray();
+        return $this->model
+            ->with("user")
+            ->with("products")
+            ->get()
+            ->toArray();
     }
 
     public function create(array $data): void

@@ -40,6 +40,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('products.list') }}">Productos</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('invoices.list') }}">Facturas</a>
+                            </li>
                         @endauth
                     </ul>
 
