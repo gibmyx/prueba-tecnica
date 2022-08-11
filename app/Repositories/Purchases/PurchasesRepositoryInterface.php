@@ -9,4 +9,6 @@ use App\Repositories\Shared\RepositoryInterface;
 interface PurchasesRepositoryInterface extends RepositoryInterface
 {
 
+    public function purchasesWithoutInvoices(): array;
+
 }

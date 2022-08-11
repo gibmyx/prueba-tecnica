@@ -39,4 +39,9 @@ final class PurchasesRepository implements PurchasesRepositoryInterface
     {
         return $this->model->find($id);
     }
+
+    public function purchasesWithoutInvoices(): array
+    {
+        return $this->model->whereNull("invoice_id")->get()->toArray();
+    }
 }

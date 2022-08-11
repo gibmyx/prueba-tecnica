@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Repositories\Invoices\InvoicesRepository;
+use App\Repositories\Invoices\InvoicesRepositoryInterface;
+
 use App\Repositories\Products\ProductsRepository;
 use App\Repositories\Products\ProductsRepositoryInterface;
+
 use App\Repositories\Purchases\PurchasesRepository;
 use App\Repositories\Purchases\PurchasesRepositoryInterface;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ProductsRepositoryInterface::class,
             ProductsRepository::class);
+
+        $this->app->bind(
+            InvoicesRepositoryInterface::class,
+            InvoicesRepository::class);
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePurcase extends Migration
+class CreateInvoices extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePurcase extends Migration
      */
     public function up()
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->string("code");
             $table->integer("user_id");
-            $table->integer("product_id");
-            $table->integer("cantidad");
+            $table->index("user_id");
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreatePurcase extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purcase');
+        Schema::dropIfExists('invoices');
     }
 }

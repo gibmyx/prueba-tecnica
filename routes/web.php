@@ -42,12 +42,14 @@ Route::middleware([
     "prevent-back-history"
 ])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeAdminController::class, 'index'])->name('dashboard');
-    Route::get('/products', [App\Http\Controllers\ProductsController::class, 'index'])->name('products.list');
-    Route::get('/product/edit/{id}', [App\Http\Controllers\ProductsController::class, 'showProduct'])->name('products.edit');
-    Route::get('/product/create', [App\Http\Controllers\ProductsController::class, 'createProduct'])->name('products.create');
+    Route::get('/products', [\App\Http\Controllers\Products\ProductsController::class, 'index'])->name('products.list');
+    Route::get('/product/edit/{id}', [\App\Http\Controllers\Products\ProductsController::class, 'showProduct'])->name('products.edit');
+    Route::get('/product/create', [\App\Http\Controllers\Products\ProductsController::class, 'createProduct'])->name('products.create');
 
-    Route::post('/product/update', [App\Http\Controllers\ProductsController::class, 'update'])->name('products.update');
-    Route::post('/product/save', [App\Http\Controllers\ProductsController::class, 'save'])->name('products.save');
+    Route::post('/product/update', [\App\Http\Controllers\Products\ProductsController::class, 'update'])->name('products.update');
+    Route::post('/product/save', [\App\Http\Controllers\Products\ProductsController::class, 'save'])->name('products.save');
+
+    Route::post('/product/generate-invoices', [PurchasePostController::class, 'generateInvoices'])->name('generate.invoices');
 });
 
 Route::middleware([

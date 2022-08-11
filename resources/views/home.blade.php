@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <table class="table table-bordered">
+                        <table className="table table-bordered">
                             <thead>
                             <tr>
                                 <th width="20%">Nombre</th>

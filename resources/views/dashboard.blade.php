@@ -13,9 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        <h1>Admin</h1>
-                        {{ __('You are logged in!') }}
+                        <button class="btn btn-primary" id="generar-facturas">Generar facturas pendientes</button>
                     </div>
                 </div>
             </div>

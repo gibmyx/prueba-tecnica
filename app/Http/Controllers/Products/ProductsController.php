@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Products;
 
+use App\Http\Controllers\Controller;
 use App\Repositories\Products\ProductsRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 final class ProductsController extends Controller
 {
