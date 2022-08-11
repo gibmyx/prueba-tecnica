@@ -34,6 +34,10 @@ Route::middleware([
 ])->post('/admin-logout', [\App\Http\Controllers\AuthAdmin\LoginAdminController::class, 'logout'])->name('admin.logout.post');
 
 Route::middleware([
+    'auth:web'
+])->post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+Route::middleware([
     'auth:admin',
     "prevent-back-history"
 ])->group(function () {
