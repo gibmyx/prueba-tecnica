@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Purchases\PurchasePostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,6 @@ Route::middleware([
     'auth:admin'
 ])->post('/admin-logout', [\App\Http\Controllers\AuthAdmin\LoginAdminController::class, 'logout'])->name('admin.logout.post');
 
-
 Route::middleware([
     'auth:admin',
     "prevent-back-history"
@@ -45,4 +45,5 @@ Route::middleware([
     "prevent-back-history"
 ])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::post('/purchase', PurchasePostController::class);
 });
