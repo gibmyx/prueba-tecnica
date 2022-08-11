@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Products\ProductsRepository;
+use App\Repositories\Products\ProductsRepositoryInterface;
 use App\Repositories\Purchases\PurchasesRepository;
 use App\Repositories\Purchases\PurchasesRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             PurchasesRepositoryInterface::class,
             PurchasesRepository::class);
+
+        $this->app->bind(
+            ProductsRepositoryInterface::class,
+            ProductsRepository::class);
     }
 
     /**

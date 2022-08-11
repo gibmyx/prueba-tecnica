@@ -41,13 +41,19 @@ Route::middleware([
     'auth:admin',
     "prevent-back-history"
 ])->group(function () {
-    Route::get('/dashboard', [App\Http\Controllers\HomeAdminController::class, 'index'])->name('home');
+    Route::get('/dashboard', [App\Http\Controllers\HomeAdminController::class, 'index'])->name('dashboard');
+    Route::get('/products', [App\Http\Controllers\ProductsController::class, 'index'])->name('products.list');
+    Route::get('/product/edit/{id}', [App\Http\Controllers\ProductsController::class, 'showProduct'])->name('products.edit');
+    Route::get('/product/create', [App\Http\Controllers\ProductsController::class, 'createProduct'])->name('products.create');
+
+    Route::post('/product/update', [App\Http\Controllers\ProductsController::class, 'update'])->name('products.update');
+    Route::post('/product/save', [App\Http\Controllers\ProductsController::class, 'save'])->name('products.save');
 });
 
 Route::middleware([
     'auth:web',
     "prevent-back-history"
 ])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/purchase', PurchasePostController::class);
 });

@@ -2,29 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Repositories\Products\ProductsRepositoryInterface;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $repository;
+
+    public function __construct(
+        ProductsRepositoryInterface $repository
+    )
     {
+        $this->repository = $repository;
         $this->middleware('auth:web');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $products = Product::all()->toArray();
+        $products = $this->repository->all();
         return view('home', [
             'products' => $products
         ]);
