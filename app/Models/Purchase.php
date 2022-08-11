@@ -15,6 +15,12 @@ class Purchase extends Model
         'user_id',
         'product_id',
         'invoice_id',
-        'cantidad'
+        'price',
+        'tax'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }

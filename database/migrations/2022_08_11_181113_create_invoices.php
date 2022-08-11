@@ -17,8 +17,11 @@ class CreateInvoices extends Migration
             $table->id();
             $table->string("code");
             $table->integer("user_id");
-            $table->index("user_id");
+            $table->float("total_invoice");
+            $table->float("total_tax");
             $table->timestamps();
+
+            $table->index("user_id");
         });
     }
 

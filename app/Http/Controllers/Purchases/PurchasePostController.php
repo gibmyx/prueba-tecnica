@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Purchases;
 use App\Http\Controllers\Controller;
 use App\Models\Purchase;
 use App\Repositories\Invoices\InvoicesRepositoryInterface;
+use App\Repositories\Products\ProductsRepositoryInterface;
 use App\Repositories\Purchases\PurchasesRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,22 +18,27 @@ final class PurchasePostController extends Controller
 {
     private $repository;
     private $invoicesRepository;
+    private $productsRepository;
 
     public function __construct(
         PurchasesRepositoryInterface $repository,
-        InvoicesRepositoryInterface $invoicesRepository
+        InvoicesRepositoryInterface $invoicesRepository,
+        ProductsRepositoryInterface $productsRepository
     )
     {
         $this->repository = $repository;
         $this->invoicesRepository = $invoicesRepository;
+        $this->productsRepository = $productsRepository;
     }
 
     public function __invoke(Request $request): Response
     {
+        $product = $this->productsRepository->find((string)$request->get("product_id" ));
         $this->repository->create([
             'user_id' => Auth::id(),
             'product_id' =>  $request->get("product_id" ),
-            'cantidad' => $request->get("cantidad", 0)
+            'price' => $product->price,
+            'tax' => $product->tax
         ]);
         return response()->noContent(201);
     }
@@ -46,6 +52,8 @@ final class PurchasePostController extends Controller
             $invoice = [
                 'code' => $code,
                 'user_id' => $purchases->first()['user_id'],
+                'total_invoice' => $purchases->sum("price"),
+                'total_tax' => $purchases->sum("tax")
             ];
 
             $this->invoicesRepository->create($invoice);

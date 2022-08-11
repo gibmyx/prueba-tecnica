@@ -20,7 +20,7 @@ final class InvoicesRepository implements InvoicesRepositoryInterface
     {
         return $this->model
             ->with("user")
-            ->with("products")
+            ->with("purchase")
             ->get()
             ->toArray();
     }
@@ -40,9 +40,12 @@ final class InvoicesRepository implements InvoicesRepositoryInterface
         // TODO: Implement delete() method.
     }
 
-    public function find(string $id): ?Invoice
+    public function find(string $id)
     {
-        return $this->model->find($id);
+        return $this->model
+            ->with("user")
+            ->with("purchase")
+            ->find($id);
     }
 
     public function findWithcode(string $code): ?Invoice

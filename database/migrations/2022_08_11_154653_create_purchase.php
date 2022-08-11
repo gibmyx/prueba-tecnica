@@ -17,8 +17,9 @@ class CreatePurchase extends Migration
             $table->id();
             $table->integer("user_id");
             $table->integer("product_id");
-            $table->integer("invoice_id")->nullable(true);
-            $table->integer("cantidad");
+            $table->integer("invoice_id")->nullable();
+            $table->float("price");
+            $table->float("tax");
             $table->timestamps();
 
             $table->index("user_id");

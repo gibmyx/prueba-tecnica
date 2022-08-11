@@ -19,7 +19,6 @@
                             <tr>
                                 <th width="20%">Nombre</th>
                                 <th width="20%">Precio</th>
-                                <th width="20%">Cantidad</th>
                                 <th width="20%">Options</th>
                             </tr>
                             </thead>
@@ -27,10 +26,7 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td><strong>{{$product['name']}}</strong></td>
-                                    <td>{{$product['price']}}</td>
-                                    <td>
-                                        <input type="number" placeholder="Cantidad" class="form-control" value="0" id="count-{{$product['id']}}"/>
-                                    </td>
+                                    <td>{{$product['price']}}$</td>
                                     <td>
                                         <div class="btn-group">
                                             <button data-id="{{$product['id']}}" class="btn btn-primary purchase-product">Comprar</button>

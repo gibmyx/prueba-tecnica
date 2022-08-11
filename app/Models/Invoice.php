@@ -14,6 +14,8 @@ class Invoice extends Model
     protected $fillable = [
         'code',
         'user_id',
+        'total_invoice',
+        'total_tax',
     ];
 
     public function user()
@@ -21,8 +23,9 @@ class Invoice extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function products()
+    public function purchase()
     {
-        return $this->hasMany(Purchase::class, 'invoice_id');
+        return $this->hasMany(Purchase::class, 'invoice_id')
+            ->with("product");
     }
 }
